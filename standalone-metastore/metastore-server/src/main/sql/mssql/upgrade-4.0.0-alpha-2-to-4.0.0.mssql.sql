@@ -29,6 +29,9 @@ CREATE INDEX TAB_COL_STATS_IDX ON TAB_COL_STATS (DB_NAME, TABLE_NAME, COLUMN_NAM
 -- HIVE-27186
 ALTER TABLE METASTORE_DB_PROPERTIES ADD PROPERTYCONTENT varbinary(max);
 
+--- HIVE-27180
+UPDATE SERDES SET SLIB='org.apache.hadoop.hive.serde2.JsonSerDe' where SLIB='org.apache.hive.hcatalog.data.JsonSerDe';
+
 -- These lines need to be last.  Insert any changes above.
 UPDATE VERSION SET SCHEMA_VERSION='4.0.0', VERSION_COMMENT='Hive release version 4.0.0' where VER_ID=1;
 SELECT 'Finished upgrading MetaStore schema from 4.0.0-alpha-2 to 4.0.0' AS MESSAGE;
